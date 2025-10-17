@@ -19,8 +19,8 @@ public class UserDAO {
     private EntityManagerFactory emf;
 
     public UserDAO() {
-        this.emf = Persistence.createEntityManagerFactory("teleexpertise-pu");
-    }
+        this.emf = Persistence.createEntityManagerFactory("medicale");
+   }
 
     public UserDAO(EntityManagerFactory emf) {
         this.emf = emf;
@@ -64,7 +64,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.email = :email",
+                    "SELECT u FROM User u WHERE u.email = :email",
                     User.class
             );
             query.setParameter("email", email);
@@ -80,7 +80,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u ORDER BY u.nom ASC",
+                    "SELECT u FROM User u ORDER BY u.nom ASC",
                     User.class
             );
             return query.getResultList();
@@ -94,7 +94,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role ORDER BY u.nom ASC",
+                    "SELECT u FROM User u WHERE u.role = :role ORDER BY u.nom ASC",
                     User.class
             );
             query.setParameter("role", role);
@@ -109,7 +109,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role " +
+                    "SELECT u FROM User u WHERE u.role = :role " +
                             "AND u.specialite = :specialite AND u.actif = true",
                     User.class
             );
@@ -130,7 +130,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role " +
+                    "SELECT u FROM User u WHERE u.role = :role " +
                             "AND u.specialite = :specialite AND u.actif = true",
                     User.class
             );
@@ -152,7 +152,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role AND u.actif = true " +
+                    "SELECT u FROM User u WHERE u.role = :role AND u.actif = true " +
                             "ORDER BY u.nom ASC",
                     User.class
             );
@@ -168,7 +168,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role AND u.actif = true " +
+                    "SELECT u FROM User u WHERE u.role = :role AND u.actif = true " +
                             "ORDER BY u.nom ASC",
                     User.class
             );
@@ -184,7 +184,7 @@ public class UserDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM Utilisateur u WHERE u.role = :role AND u.actif = true " +
+                    "SELECT u FROM User u WHERE u.role = :role AND u.actif = true " +
                             "ORDER BY u.nom ASC",
                     User.class
             );
@@ -214,6 +214,8 @@ public class UserDAO {
             em.close();
         }
     }
+
+
 
     public void close() {
         if (emf != null && emf.isOpen()) {
