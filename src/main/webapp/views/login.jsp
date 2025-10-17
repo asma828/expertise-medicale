@@ -78,16 +78,7 @@
       </button>
     </form>
 
-    <!-- Comptes de test -->
-    <div class="mt-6 text-sm text-gray-400">
-      <p class="mb-2 text-center"><i class="bi bi-info-circle"></i> Comptes de test disponibles :</p>
-      <div class="bg-gray-900 p-4 rounded-lg text-xs leading-relaxed">
-        <strong>Infirmier:</strong> infirmier1@hopital.ma<br />
-        <strong>Généraliste:</strong> generaliste1@hopital.ma<br />
-        <strong>Spécialiste:</strong> cardio1@hopital.ma<br />
-        <strong>Mot de passe:</strong> password123
-      </div>
-    </div>
+
 
     <div class="text-center text-sm text-gray-500 mt-6">
       <a href="${pageContext.request.contextPath}/" class="hover:underline">← Retour à l'accueil</a>
