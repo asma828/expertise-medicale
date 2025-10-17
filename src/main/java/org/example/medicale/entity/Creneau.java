@@ -5,6 +5,9 @@ import org.example.medicale.enums.StatutCreneau;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 @Table(name = "creneaux")
@@ -137,4 +140,19 @@ public class Creneau {
             this.statut = StatutCreneau.PASSE;
         }
     }
+
+    public String getDateFormatee() {
+        return dateHeure.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public String getDateCompleteFr() {
+        if (dateHeure == null) return "Date non définie";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy", Locale.FRENCH);
+        return dateHeure.format(formatter);
+    }
+
+//    public String getHeureFormatee() {
+//        if (dateHeure == null) return "--:--";
+//        return dateHeure.format(DateTimeFormatter.ofPattern("HH:mm"));
+//    }
 }

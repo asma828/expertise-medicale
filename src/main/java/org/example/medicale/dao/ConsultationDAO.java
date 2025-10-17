@@ -51,11 +51,15 @@ public class ConsultationDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Consultation> query = em.createQuery(
-                    "SELECT c FROM Consultation c " +
+                    "SELECT DISTINCT c FROM Consultation c " +
                             "LEFT JOIN FETCH c.patient " +
                             "LEFT JOIN FETCH c.medecin " +
                             "LEFT JOIN FETCH c.actesTechniques " +
-                            "LEFT JOIN FETCH c.demandeExpertise " +
+                            "LEFT JOIN FETCH c.demandeExpertise de " +
+                            "LEFT JOIN FETCH de.creneau cr " +
+                            "LEFT JOIN FETCH de.specialiste " +
+                            "LEFT JOIN FETCH de.medecinDemandeur " +
+                            "LEFT JOIN FETCH cr.specialiste " +
                             "WHERE c.id = :id",
                     Consultation.class
             );
@@ -66,7 +70,6 @@ public class ConsultationDAO {
             em.close();
         }
     }
-
     public Optional<Consultation> findByIdWithFetch(Long id) {
         EntityManager em = emf.createEntityManager();
         try {

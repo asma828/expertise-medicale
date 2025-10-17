@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Système de Télé-Expertise Médicale</display-name>
+
+
+    <!-- Page d'accueil par défaut -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+
+
+    <!-- Configuration de la session -->
+<!--    <session-config>-->
+<!--        <session-timeout>30</session-timeout> &lt;!&ndash; 30 minutes &ndash;&gt;-->
+<!--        <cookie-config>-->
+<!--            <http-only>true</http-only>-->
+<!--            <secure>false</secure> &lt;!&ndash; Mettre true en production avec HTTPS &ndash;&gt;-->
+<!--        </cookie-config>-->
+<!--    </session-config>-->
+
+    <!-- Encodage UTF-8 -->
+<!--    <filter>-->
+<!--        <filter-name>EncodingFilter</filter-name>-->
+<!--        <filter-class>org.example.medicale.filter.EncodingFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>EncodingFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
+
+    <!-- Gestion des erreurs -->
+<!--    <error-page>-->
+<!--        <error-code>404</error-code>-->
+<!--        <location>/views/errors/404.jsp</location>-->
+<!--    </error-page>-->
+
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/views/errors/500.jsp</location>-->
+<!--    </error-page>-->
+
+</web-app>

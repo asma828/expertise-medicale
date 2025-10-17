@@ -149,7 +149,7 @@
                                             <p class="text-gray-400 text-sm">Créneau</p>
                                             <p class="font-semibold text-yellow-400">${demande.creneau.heureFormatee}</p>
                                             <p class="text-xs text-gray-500">
-                                                <fmt:formatDate value="${demande.creneau.dateHeure}" pattern="dd/MM/yyyy" />
+                                                ${demande.creneau.dateFormatee}
                                             </p>
                                         </div>
                                         <div>

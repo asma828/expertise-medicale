@@ -80,7 +80,7 @@
                 <div>
                     <h1 class="text-4xl font-bold mb-2 gold">Demande d'Expertise #${demande.id}</h1>
                     <p class="text-gray-400">
-                        Demandée le <fmt:formatDate value="${demande.dateDemande}" pattern="dd/MM/yyyy à HH:mm" />
+                        Demandée le ${demande.dateDemandeFormatee}
                     </p>
                 </div>
                 <c:choose>
@@ -282,7 +282,8 @@
                                 </div>
 
                                 <p class="text-sm text-gray-500">
-                                    Répondu le <fmt:formatDate value="${demande.dateReponse}" pattern="dd/MM/yyyy à HH:mm" />
+                                    Répondu le ${demande.dateReponseFormatee}
+                                    ${demande.creneau.dateReponse.format(java.time.format.DateTimeFormatter.ofPattern('EEEE dd MMMM yyyy').withLocale(java.util.Locale.FRENCH))}
                                 </p>
                             </div>
                         </div>
@@ -314,7 +315,7 @@
                                 ${demande.creneau.heureFormatee}
                             </p>
                             <p class="text-gray-400 text-sm">
-                                <fmt:formatDate value="${demande.creneau.dateHeure}" pattern="EEEE dd MMMM yyyy" />
+                                ${demande.creneau.dateCompleteFr}
                             </p>
                         </div>
                     </div>

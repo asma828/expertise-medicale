@@ -38,7 +38,7 @@ public class Patient {
     @Column(nullable = false)
     private StatutPatient statut = StatutPatient.EN_ATTENTE;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<SigneVital> signesVitaux = new ArrayList<>();
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)

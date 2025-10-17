@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.example.medicale.enums.StatutExpertise;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "demandes_expertise")
@@ -13,7 +14,7 @@ public class DemandeExpertise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "consultation_id", nullable = false)
     private Consultation consultation;
 
@@ -179,4 +180,15 @@ public class DemandeExpertise {
     public boolean estTerminee() {
         return statut == StatutExpertise.TERMINEE;
     }
+
+    public String getDateDemandeFormatee() {
+        return dateDemande.format(DateTimeFormatter.ofPattern("dd/MM/yyyy à HH:mm"));
+    }
+
+    public String getDateReponseFormatee() {
+        if (dateReponse == null) return null;
+        return dateReponse.format(DateTimeFormatter.ofPattern("dd/MM/yyyy à HH:mm"));
+    }
+
+
 }

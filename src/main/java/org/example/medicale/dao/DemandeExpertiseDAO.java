@@ -49,12 +49,11 @@ public class DemandeExpertiseDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<DemandeExpertise> query = em.createQuery(
-                    "SELECT d FROM DemandeExpertise d " +
-                            "LEFT JOIN FETCH d.consultation c " +
-                            "LEFT JOIN FETCH c.patient " +
+                    "SELECT DISTINCT d FROM DemandeExpertise d " +
                             "LEFT JOIN FETCH d.specialiste " +
                             "LEFT JOIN FETCH d.medecinDemandeur " +
-                            "LEFT JOIN FETCH d.creneau " +
+                            "LEFT JOIN FETCH d.creneau cr " +
+                            "LEFT JOIN FETCH cr.specialiste " +
                             "WHERE d.id = :id",
                     DemandeExpertise.class
             );
@@ -65,7 +64,6 @@ public class DemandeExpertiseDAO {
             em.close();
         }
     }
-
     // Trouver toutes les demandes
     public List<DemandeExpertise> findAll() {
         EntityManager em = emf.createEntityManager();
@@ -85,10 +83,13 @@ public class DemandeExpertiseDAO {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<DemandeExpertise> query = em.createQuery(
-                    "SELECT d FROM DemandeExpertise d " +
+                    "SELECT DISTINCT d FROM DemandeExpertise d " +
                             "LEFT JOIN FETCH d.consultation c " +
                             "LEFT JOIN FETCH c.patient " +
                             "LEFT JOIN FETCH d.medecinDemandeur " +
+                            "LEFT JOIN FETCH d.specialiste " +
+                            "LEFT JOIN FETCH d.creneau cr " +
+                            "LEFT JOIN FETCH cr.specialiste " +
                             "WHERE d.specialiste.id = :specialisteId " +
                             "ORDER BY d.dateDemande DESC",
                     DemandeExpertise.class
@@ -99,7 +100,6 @@ public class DemandeExpertiseDAO {
             em.close();
         }
     }
-
     // Trouver les demandes d'un médecin demandeur
     public List<DemandeExpertise> findByMedecinDemandeur(Long medecinId) {
         EntityManager em = emf.createEntityManager();

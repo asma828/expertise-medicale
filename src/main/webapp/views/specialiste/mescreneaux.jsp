@@ -188,7 +188,7 @@
                                         <c:choose>
                                             <c:when test="${creneau.statut == 'DISPONIBLE'}">
                                                 <p class="text-xs text-green-400 mb-2">Disponible</p>
-                                                <form method="post" action="${pageContext.request.contextPath}/specialiste/mes-creneaux" class="inline">
+                                                <form method="post" action="${pageContext.request.contextPath}/specialiste/mescreneaux" class="inline">
                                                     <input type="hidden" name="action" value="supprimer">
                                                     <input type="hidden" name="creneauId" value="${creneau.id}">
                                                     <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
@@ -229,7 +229,7 @@
         <div class="card-luxury p-8 max-w-2xl w-full mx-4">
             <h3 class="text-2xl font-semibold mb-6 gold">Ajouter des Créneaux</h3>
 
-            <form method="post" action="${pageContext.request.contextPath}/specialiste/mes-creneaux">
+            <form method="post" action="${pageContext.request.contextPath}/specialiste/mescreneaux">
                 <input type="hidden" name="action" value="ajouter">
                 <input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}">
 
