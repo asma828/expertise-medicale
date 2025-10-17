@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,10 +40,10 @@
       <p class="text-gray-300 mt-2">Inscrivez-vous pour accéder à la plateforme</p>
     </div>
 
-    <!-- Error/Success messages -->
+    <!-- Messages d'erreur / succès -->
     <c:if test="${not empty error}">
       <div class="bg-red-500/20 border border-red-400 text-red-300 px-4 py-3 rounded mb-4">
-        <i class="bi bi-exclamation-triangle-fill"></i> ${error}
+        ${error}
       </div>
     </c:if>
 
@@ -90,16 +92,15 @@
         </select>
       </div>
 
-      <!-- Optional: Specialité & Tarif, visible if role = SPECIALISTE (can be handled with JS later) -->
+      <!-- Champs Spécialité et Tarif visibles uniquement pour SPECIALISTE -->
       <div id="specialiteFields" class="hidden">
         <label class="block mb-1 text-sm text-gray-200">Spécialité</label>
         <select name="specialite"
                 class="w-full px-4 py-2 rounded bg-gray-900 border border-gray-700 text-gray-100">
           <option value="" disabled selected>-- Choisir une spécialité --</option>
-          <option value="CARDIOLOGIE">Cardiologie</option>
-          <option value="DERMATOLOGIE">Dermatologie</option>
-          <option value="NEUROLOGIE">Neurologie</option>
-          <!-- Ajouter plus selon votre enum -->
+          <c:forEach var="s" items="${specialites}">
+            <option value="${s}">${fn:toLowerCase(s)}</option>
+          </c:forEach>
         </select>
       </div>
 
@@ -118,12 +119,13 @@
   </div>
 
   <script>
-    // JS to show specialite & tarif if role = SPECIALISTE
+    // Afficher les champs spécialité et tarif uniquement si role = SPECIALISTE
     document.querySelector('select[name="role"]').addEventListener('change', function () {
       const isSpecialiste = this.value === 'SPECIALISTE';
       document.getElementById('specialiteFields').classList.toggle('hidden', !isSpecialiste);
       document.getElementById('tarifField').classList.toggle('hidden', !isSpecialiste);
     });
   </script>
+
 </body>
 </html>
